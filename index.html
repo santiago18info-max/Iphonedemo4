@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Menta · Tienda online de iPhone, audio y relojes</title>
+  <meta name="description" content="Comprá online iPhone nuevos y semi nuevos, AirPods, relojes y accesorios. Envíos a todo el país, cuotas, garantía y seguimiento de tu pedido.">
+  <meta name="theme-color" content="#F6F7F3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+  <div class="topbar"><div class="container" id="topbar"></div></div>
+
+  <!-- Nav -->
+  <header class="nav" id="nav">
+    <div class="container nav-in">
+      <a href="#inicio" class="logo" aria-label="Menta, inicio"><i></i>menta</a>
+      <nav class="menu" id="menu" aria-label="Secciones">
+        <a href="#tienda">Tienda</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#como">Cómo comprar</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="nav-act">
+        <button class="pill-btn" id="trackBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg><span>Seguir pedido</span></button>
+        <button class="cart-btn" id="cartBtn" aria-label="Ver carrito"><svg class="ic" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg><em id="cartCount" hidden>0</em></button>
+        <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner a imagen completa -->
+  <section class="hero" id="inicio">
+    <div class="slides" id="slides"></div>
+    <div class="hero-dots" id="dots"></div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="container">
+    <ul class="perks">
+      <li><svg class="ic" viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg><div><b>Envío en el día</b><span id="perkShip"></span></div></li>
+      <li><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg><div><b>Hasta 12 cuotas</b><span>Con tarjeta de crédito</span></div></li>
+      <li><svg class="ic" viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Garantía por escrito</b><span>12 meses nuevos · 6 semi nuevos</span></div></li>
+      <li><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Seguí tu pedido</b><span>Con tu número, en todo momento</span></div></li>
+    </ul>
+  </section>
+
+  <!-- Categorías -->
+  <section class="section-sm"><div class="container"><div class="cats" id="cats"></div></div></section>
+
+  <!-- Ofertas -->
+  <section class="section offers" id="ofertas">
+    <div class="container">
+      <div class="sec-head"><div><p class="kicker">Esta semana</p><h2>Ofertas</h2></div><a href="#tienda" class="link">Ver toda la tienda →</a></div>
+      <div class="rail" id="offerGrid"></div>
+    </div>
+  </section>
+
+  <!-- Tienda -->
+  <section class="section" id="tienda">
+    <div class="container">
+      <div class="sec-head"><div><p class="kicker">Catálogo</p><h2>Toda la tienda</h2></div><p class="muted" id="count"></p></div>
+      <div class="tools">
+        <div class="chips" id="chips"></div>
+        <div class="tools-r">
+          <label class="search"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="q" placeholder="Buscar producto" aria-label="Buscar producto"></label>
+          <select id="fEstado" aria-label="Estado"><option value="">Nuevos y semi nuevos</option><option value="nuevo">Solo nuevos</option><option value="semi">Solo semi nuevos</option></select>
+          <select id="sort" aria-label="Ordenar"><option value="rel">Destacados</option><option value="asc">Menor precio</option><option value="desc">Mayor precio</option></select>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" hidden>No encontramos productos con esos filtros.</p>
+    </div>
+  </section>
+
+  <!-- Cómo comprar -->
+  <section class="section soft" id="como">
+    <div class="container">
+      <div class="sec-head center"><div><p class="kicker">Simple y seguro</p><h2>Cómo comprar</h2></div></div>
+      <ol class="how">
+        <li><span>1</span><h3>Elegís y agregás al carrito</h3><p>Con color y capacidad. Ves el stock real de cada equipo.</p></li>
+        <li><span>2</span><h3>Completás tus datos</h3><p>Retirás en el showroom o te lo enviamos a todo el país.</p></li>
+        <li><span>3</span><h3>Elegís cómo pagar</h3><p>Transferencia, efectivo al recibir o tarjeta con link de pago.</p></li>
+        <li><span>4</span><h3>Seguís tu pedido</h3><p>Con tu número ves en qué etapa está, hasta que llega.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Reseñas -->
+  <section class="section">
+    <div class="container">
+      <div class="sec-head"><div><p class="kicker">Reseñas</p><h2>Quienes ya compraron</h2></div><div class="rating"><b>4,9</b><span class="stars">★★★★★</span><small>214 reseñas</small></div></div>
+      <div class="reviews">
+        <blockquote class="t-mint"><span class="stars">★★★★★</span><p>Compré desde la web un domingo de noche y el lunes al mediodía ya lo tenía. Pude seguir el pedido todo el tiempo.</p><cite>Camila R. · Pocitos</cite></blockquote>
+        <blockquote class="t-peach"><span class="stars">★★★★★</span><p>El 15 semi nuevo llegó impecable y con la batería que decía la página. Muy claros con todo.</p><cite>Federico S. · Prado</cite></blockquote>
+        <blockquote class="t-sky"><span class="stars">★★★★★</span><p>Me lo mandaron a Salto por agencia. Usé un cupón y pagué por transferencia, sin vueltas.</p><cite>Lucía T. · Salto</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section soft" id="faq">
+    <div class="container narrow">
+      <div class="sec-head center"><div><p class="kicker">Dudas frecuentes</p><h2>Preguntas</h2></div></div>
+      <div class="faq">
+        <details open><summary>¿Los equipos son originales?</summary><p>Sí. Son originales y libres de fábrica, sin bloqueo de iCloud ni de operadora. Podés verificar el IMEI al recibirlo.</p></details>
+        <details><summary>¿Cómo pago mi pedido?</summary><p>Al confirmar elegís transferencia, efectivo al recibir o tarjeta. Si elegís tarjeta te enviamos un link de pago por WhatsApp.</p></details>
+        <details><summary>¿Cuánto demora el envío?</summary><p>En Montevideo llega en el día si comprás antes de las 16 h. Al interior va por agencia en 24 a 48 horas.</p></details>
+        <details><summary>¿Cómo sigo mi pedido?</summary><p>Con el número que te damos al comprar. Entrás a “Seguir pedido”, lo escribís y ves en qué etapa está.</p></details>
+        <details><summary>¿Qué cubre la garantía?</summary><p>Fallas de funcionamiento: 12 meses en nuevos y 6 en semi nuevos. No cubre golpes, humedad ni daños por uso.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="contact">
+        <div><h2>¿Tenés dudas antes de comprar?</h2><p id="contactTxt"></p></div>
+        <div class="contact-act"><a href="#" class="btn btn-dark js-wa" data-msg="¡Hola Menta! Quería hacer una consulta.">Escribir por WhatsApp</a><a href="https://instagram.com/" target="_blank" rel="noopener" class="btn btn-white">Instagram</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="f-row">
+        <a href="#inicio" class="logo"><i></i>menta</a>
+        <nav><a href="#tienda">Tienda</a><a href="#ofertas">Ofertas</a><a href="#como">Cómo comprar</a><a href="#faq">Preguntas</a><a href="panel.html">Panel</a></nav>
+      </div>
+      <p class="legal">Menta es un revendedor independiente y no es distribuidor oficial de Apple. iPhone, AirPods, Apple Watch y MagSafe son marcas de Apple Inc.</p>
+      <div class="f-bottom"><p>© <span id="year"></span> Menta · Sitio de demostración</p><p>Diseño y desarrollo por <b>Synera</b></p></div>
+    </div>
+  </footer>
+
+  <!-- Ficha de producto -->
+  <div class="overlay" id="pm" hidden>
+    <div class="ov-bg" data-close></div>
+    <article class="modal" role="dialog" aria-modal="true" aria-labelledby="pmName">
+      <button class="x" data-close aria-label="Cerrar">&times;</button>
+      <div class="pm-media" id="pmMedia"></div>
+      <div class="pm-body">
+        <div class="pm-tags" id="pmTags"></div>
+        <h3 id="pmName"></h3>
+        <p class="muted" id="pmDesc"></p>
+        <div class="opt" id="pmColorWrap"><h4>Color</h4><div class="pills" id="pmColors"></div></div>
+        <div class="opt" id="pmVarWrap"><h4>Opción</h4><div class="pills" id="pmVars"></div></div>
+        <div class="pm-price"><div><b id="pmPrice"></b><s id="pmOld"></s></div><span id="pmStock"></span></div>
+        <p class="pm-cuotas" id="pmCuotas"></p>
+        <div class="pm-buy">
+          <div class="qty"><button id="pmMinus" aria-label="Menos">−</button><b id="pmQty">1</b><button id="pmPlus" aria-label="Más">+</button></div>
+          <button class="btn btn-dark" id="pmAdd">Agregar al carrito</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Carrito y compra -->
+  <div class="overlay ov-right" id="drawer" hidden>
+    <div class="ov-bg" data-close></div>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+      <div class="d-head"><h3 id="dTitle">Tu carrito</h3><button class="x" data-close aria-label="Cerrar">&times;</button></div>
+      <ol class="d-steps" id="dSteps"><li>Carrito</li><li>Datos y entrega</li><li>Pago</li></ol>
+      <div class="d-body" id="dBody"></div>
+    </aside>
+  </div>
+
+  <!-- Seguimiento -->
+  <div class="overlay" id="track" hidden>
+    <div class="ov-bg" data-close></div>
+    <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="tTitle">
+      <button class="x" data-close aria-label="Cerrar">&times;</button>
+      <div class="track">
+        <h3 id="tTitle">Seguí tu pedido</h3>
+        <p class="muted">Escribí el número que te dimos al comprar. Probá con <b>MT-1040</b>.</p>
+        <form id="tForm"><input id="tCode" placeholder="MT-0000" required aria-label="Número de pedido"><button class="btn btn-dark">Buscar</button></form>
+        <div id="tOut"></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="wa-float js-wa" data-msg="¡Hola Menta! Quería hacer una consulta." aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>
+  </a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="store.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

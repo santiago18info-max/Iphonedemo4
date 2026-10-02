@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Panel · Menta</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#F6F7F3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+
+  <!-- Login -->
+  <main class="login" id="login">
+    <form class="login-card" id="loginForm">
+      <p class="logo"><i></i>menta</p>
+      <h1>Panel de la tienda</h1>
+      <p class="hint">Demo: usuario <b>demo</b> · contraseña <b>demo</b></p>
+      <label class="fld">Usuario<input name="u" autocomplete="username" required></label>
+      <label class="fld">Contraseña<input name="p" type="password" autocomplete="current-password" required></label>
+      <p class="err" id="loginErr" hidden>Usuario o contraseña incorrectos.</p>
+      <button class="btn btn-dark btn-block">Entrar</button>
+      <a href="index.html" class="back">← Volver a la tienda</a>
+    </form>
+  </main>
+
+  <div class="app" id="app" hidden>
+    <aside class="side">
+      <p class="logo"><i></i>menta</p>
+      <nav id="nav">
+        <button data-v="inicio" class="on"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span>Inicio</span></button>
+        <button data-v="pedidos"><svg class="ic" viewBox="0 0 24 24"><path d="M6 7h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span>Pedidos</span><em id="newCount" hidden></em></button>
+        <button data-v="productos"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Productos</span></button>
+        <button data-v="cupones"><svg class="ic" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/><path d="M10 9v6"/></svg><span>Cupones</span></button>
+        <button data-v="ajustes"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg><span>Ajustes</span></button>
+      </nav>
+      <a href="index.html" target="_blank" class="btn btn-line btn-sm side-site">Ver tienda ↗</a>
+    </aside>
+
+    <main class="main">
+      <!-- INICIO -->
+      <section class="view" data-view="inicio">
+        <header class="vh"><div><h2 id="hello">Hola</h2><p class="muted">Así viene la tienda en los últimos 30 días.</p></div></header>
+        <div class="kpis">
+          <div class="kpi t-mint"><small>Ventas (30 días)</small><b id="kSales"></b></div>
+          <div class="kpi t-peach"><small>Pedidos (30 días)</small><b id="kOrders"></b></div>
+          <div class="kpi t-sky"><small>Ticket promedio</small><b id="kAvg"></b></div>
+          <div class="kpi t-lilac"><small>Por despachar</small><b id="kPend"></b></div>
+        </div>
+        <div class="cols">
+          <div class="box"><div class="box-h"><h3>Ventas de los últimos 7 días</h3><span class="muted" id="chartTot"></span></div><div class="chart" id="chart"></div></div>
+          <div class="box"><div class="box-h"><h3>Stock bajo</h3><button class="link" data-go="productos">Ver productos</button></div><div id="lowStock"></div></div>
+        </div>
+        <div class="cols">
+          <div class="box"><div class="box-h"><h3>Últimos pedidos</h3><button class="link" data-go="pedidos">Ver todos</button></div><div id="recent"></div></div>
+          <div class="box"><div class="box-h"><h3>Más vendidos</h3></div><div id="top"></div></div>
+        </div>
+      </section>
+
+      <!-- PEDIDOS -->
+      <section class="view" data-view="pedidos" hidden>
+        <header class="vh"><div><h2>Pedidos</h2><p class="muted">Cada cambio de estado lo ve el cliente al seguir su pedido.</p></div></header>
+        <div class="chips" id="oChips"></div>
+        <div class="orders" id="orders"></div>
+      </section>
+
+      <!-- PRODUCTOS -->
+      <section class="view" data-view="productos" hidden>
+        <header class="vh"><div><h2>Productos</h2><p class="muted">Precio, stock y fotos. Lo que cambies se ve al instante en la tienda.</p></div><button class="btn btn-dark btn-sm" id="addProd">+ Nuevo producto</button></header>
+        <label class="search"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input id="pq" placeholder="Buscar producto" aria-label="Buscar producto"></label>
+        <div class="ptable" id="ptable"></div>
+      </section>
+
+      <!-- CUPONES -->
+      <section class="view" data-view="cupones" hidden>
+        <header class="vh"><div><h2>Cupones</h2><p class="muted">Códigos de descuento que el cliente aplica en el carrito.</p></div></header>
+        <form class="box c-form" id="cForm">
+          <label class="fld">Código<input name="code" required placeholder="VERANO15" maxlength="16"></label>
+          <label class="fld">Descuento (%)<input name="pct" type="number" min="1" max="90" required placeholder="15"></label>
+          <button class="btn btn-dark">Crear cupón</button>
+        </form>
+        <div class="box" id="cList"></div>
+      </section>
+
+      <!-- AJUSTES -->
+      <section class="view" data-view="ajustes" hidden>
+        <header class="vh"><div><h2>Ajustes</h2><p class="muted">Banner, envíos y datos de la tienda.</p></div></header>
+        <form id="setForm" class="set">
+          <div class="box" id="slidesEd"></div>
+          <div class="box">
+            <h3>Envíos</h3>
+            <div class="three">
+              <label class="fld">Montevideo (US$)<input name="shipMvd" type="number" min="0"></label>
+              <label class="fld">Interior (US$)<input name="shipInt" type="number" min="0"></label>
+              <label class="fld">Gratis desde (US$)<input name="freeFrom" type="number" min="0"></label>
+            </div>
+            <h3 class="mt">Datos de la tienda</h3>
+            <label class="fld">Cinta superior<input name="topbar"></label>
+            <label class="fld">Datos para transferencia<input name="bank"></label>
+            <div class="two">
+              <label class="fld">WhatsApp (con 598)<input name="whatsapp" inputmode="tel"></label>
+              <label class="fld">Horario<input name="hours"></label>
+            </div>
+            <label class="fld">Dirección<input name="address"></label>
+          </div>
+          <div class="box">
+            <h3>Demo</h3>
+            <p class="muted sm">Volvé todo a como estaba al principio.</p>
+            <div class="row"><button type="button" class="btn btn-line btn-sm" id="resetBtn">Restablecer datos</button><button type="button" class="btn btn-line btn-sm" id="logout">Cerrar sesión</button></div>
+          </div>
+          <div class="save-bar"><button class="btn btn-accent">Guardar cambios</button></div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Editar producto -->
+  <div class="overlay" id="pSheet" hidden>
+    <div class="ov-bg" data-close></div>
+    <form class="sheet" id="pForm">
+      <button type="button" class="x" data-close aria-label="Cerrar">&times;</button>
+      <h3 id="pTitle">Producto</h3>
+      <div class="img-row"><div class="thumb" id="pThumb"></div><label class="btn btn-line btn-sm">Subir foto<input type="file" accept="image/*" id="pFile" hidden></label></div>
+      <label class="fld">Nombre<input name="name" required></label>
+      <label class="fld">Descripción<textarea name="desc" rows="2"></textarea></label>
+      <div class="three">
+        <label class="fld">Categoría<select name="cat" id="pCat"></select></label>
+        <label class="fld">Estado<select name="estado"><option value="nuevo">Nuevo</option><option value="semi">Semi nuevo</option></select></label>
+        <label class="fld">Batería (%)<input name="batt" type="number" min="1" max="100"></label>
+      </div>
+      <label class="fld">Colores (separados por coma)<input name="colors" placeholder="Negro, Blanco, Azul"></label>
+      <div class="var-h"><h4>Opciones, precio y stock</h4><button type="button" class="link" id="addVar">+ Agregar opción</button></div>
+      <div id="vars"></div>
+      <div class="two">
+        <label class="fld">Descuento (%)<input name="off" type="number" min="0" max="90"></label>
+        <div class="checks"><label class="check"><input type="checkbox" name="featured"> Destacado</label><label class="check"><input type="checkbox" name="active"> Visible en la tienda</label></div>
+      </div>
+      <div class="sheet-foot"><button type="button" class="btn btn-line btn-sm" id="delProd">Eliminar</button><button class="btn btn-accent">Guardar producto</button></div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="store.js"></script>
+  <script src="panel.js"></script>
+</body>
+</html>
